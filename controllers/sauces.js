@@ -3,9 +3,9 @@ const fs = require('fs');
 
 exports.createSauces = (req, res, next) => {
     const saucesObject = JSON.parse(req.body.sauce);
-    delete saucesObject._id;
-    const sauce = new Sauce ({ //copy fields inside req
-        ...saucesObject,
+    delete saucesObject._id; // delete _id in requeste body 
+    const sauce = new Sauce ({ 
+        ...saucesObject,  //copy fields inside req
         imageUrl: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`
     })
     sauce.save()
@@ -39,7 +39,7 @@ exports.deleteSauces = (req, res, next) => {
 };
 
 exports.getOneSauces = (req, res, next) => {
-    Sauce.findOne({ _id: req.params.id })  //  find one object
+    Sauce.findOne({ _id: req.params.id })  //  find one object with the id
         .then(sauce => res.status(200).json(sauce)) //If it's Ok send back one sauce
         .catch( error => res.status(404).json({ error })); // If isn't Ok send back an error
 };
