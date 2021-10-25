@@ -1,4 +1,5 @@
 const jwt = require('jsonwebtoken');
+const fs = require('fs');
 
 module.exports = (req, res, next) => {
     try {
@@ -14,3 +15,19 @@ module.exports = (req, res, next) => {
         res.status(401).json({ error: error | 'requête non authentifiée !'});
     }
 }
+
+function createFolder () {
+
+    if (!fs.existsSync('./images')) {
+        fs.mkdir('./images', (err) => {
+        if (err) {
+        console.log(err)
+        }
+        console.log('folder created')
+        })
+        } else {
+        console.log('The folder already exist')
+        }
+    }
+
+createFolder()
