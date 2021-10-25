@@ -1,5 +1,7 @@
 const multer = require('multer');
 const { getMaxListeners } = require('npmlog');
+const fs = require('fs');
+
 const MIME_TYPES =  {
     'image/jpg': 'jpg',///////////
     'image/jpeg': 'jpg',///////// for trad in good format
@@ -16,5 +18,21 @@ const storage = multer.diskStorage({
         callback(null, name + Date.now() + '.' + extension); //
     }
 });
+
+function createFolder () {
+
+    if (!fs.existsSync('./images')) {
+        fs.mkdir('./images', (err) => {
+        if (err) {
+        console.log(err)
+        }
+        console.log('folder created')
+        })
+        } else {
+        console.log('The folder already exist')
+        }
+    }
+
+createFolder()
 
 module.exports = multer({storage}).single('image'); // export multer who are configured
