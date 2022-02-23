@@ -1,6 +1,6 @@
 Clonez le projet.
 Installez @angular/cli globalement
-Exécutez npm install pour le backend et forntend.
+Exécutez npm install pour le backend et frontend.
 Exécutez npm start pour le back-end et le front-end
 Exécution de l’API sur http://localhost:3000.
-Exécutez ng serve pour le front-end sur http://localhost:4200/.
+Exécutez ng serve pour le front-end sur http://localhost:8080/.
